@@ -1,0 +1,6 @@
+"{""class"": ""Automovil"", ""atributos"": {""marca"": ""Ford"", ""modelo"": ""fiesta"", ""n_ruedas"": 4, ""velocidad"": 15, ""cilindradas"": 2}}"
+"{""class"": ""VehiculoParticular"", ""atributos"": {""marca"": ""Toyota"", ""modelo"": ""yaris"", ""n_ruedas"": 4, ""velocidad"": 125, ""cilindradas"": 2, ""nro_puesto"": 4}}"
+"{""class"": ""VehiculoParticular"", ""atributos"": {""marca"": ""Yaris"", ""modelo"": ""toyota"", ""n_ruedas"": 4, ""velocidad"": 150, ""cilindradas"": 3, ""nro_puesto"": 5}}"
+"{""class"": ""Bicicleta"", ""atributos"": {""marca"": ""Zero"", ""modelo"": ""Msx"", ""n_ruedas"": 2, ""tipo_uso"": ""casero""}}"
+"{""class"": ""Motocicleta"", ""atributos"": {""marca"": ""Bmw"", ""modelo"": ""XZZ"", ""n_ruedas"": 2, ""tipo_uso"": ""trabajo"", ""nro_radios"": 2, ""cuadro"": ""1"", ""motor"": ""clsew2""}}"
+"{""class"": ""Automovil"", ""atributos"": {""marca"": ""Mazda"", ""modelo"": ""xds"", ""n_ruedas"": 4, ""velocidad"": 215, ""cilindradas"": 3}}"
