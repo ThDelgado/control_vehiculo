@@ -1,20 +1,40 @@
-
-from funciones import vehiculo
 import os
 import platform
 import time
+
+
+class Vehiculo:
+    def __init__(self, marca: str, modelo:str , n_ruedas:int ):
+        self.marca = marca
+        self.modelo = modelo
+        self.n_ruedas = n_ruedas
+
+    def __str__(self):
+        return (f"Marca: {self.marca}, Modelo: {self.modelo}, n_ruedas: {self.n_ruedas}")
+    
+
+class Automovil(Vehiculo):
+    def __init__(self, marca:str, modelo:str, n_ruedas:int, velocidad:int, cilindradas:int ):
+        super().__init__(marca, modelo, n_ruedas)
+        self.velocidad = velocidad
+        self.cilindradas = cilindradas
+
+    def __str__(self):
+        return (f"Marca: {self.marca}, Modelo: {self.modelo}, n_ruedas: {self.n_ruedas}, velocidad: {self.velocidad} kms/hr, cilindradas: {self.cilindradas}")
+
+
 
 
 
 #para almacenar vehiculo
 vehiculos = []
 
-delay = 5  #tiempo de espera menu
+delay = 2  #tiempo de espera menu
 
 # """ imprimir datos de automoviles """
 def leer_automovil():
     """imprime en pantalla los vehiculos ingresados """
-    print("\nDatos de los vehículos ingresados: ")
+    print("Datos de los vehículos ingresados: ")
     for vehiculo in vehiculos:
         print(vehiculo)
     time.sleep(delay)##
@@ -23,7 +43,7 @@ def leer_automovil():
  
 def registrar_automovil(indice):
     """captura atributos del auto y crea el objeto Automovil"""
-    print("f\n Datos del automóvil {indice +1}")
+    print(f" Datos del automóvil {indice +1}")
     marca = input("Inserte la marca del auto: ")
     modelo = input("Ingrese el modelo: ")
     n_ruedas = int(input("Inserte número de ruedas: "))
@@ -35,10 +55,9 @@ def registrar_automovil(indice):
 
 def cantidad_registros():
     """Determina cuantos registros queremos hacer de los automoviles y los ingresa a una lista, muestra los registro que se han hecho"""
-    global vehiculos
+
     try:
         numero_vehiculos = int(input("¿Cuantos vehículos deseas insertar? "))
-        vehiculos = []
         for i in range(numero_vehiculos):
             vehiculo = registrar_automovil(i)
             vehiculos.append(vehiculo)
@@ -47,7 +66,7 @@ def cantidad_registros():
         print("Ha ocurrido un error.", e)
     
     leer_automovil()
-    time.sleep(delay)
+   
 
 def salir():
     """mensaje de salida de sistema"""
@@ -79,7 +98,7 @@ def f_repetir(): #entrega falso o verdadero
 
 
  
-def menu(): #entrega 
+def menu(): 
     """menu de tres opciones registrar, leer o salir"""
     print("Menú...")
     print("1.- Registrar nuevo automovil.")

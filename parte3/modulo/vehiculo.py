@@ -2,7 +2,7 @@ import os
 import platform
 import time
 import csv 
-import json 
+import ast 
 
 
 class Vehiculo:
@@ -18,9 +18,9 @@ class Vehiculo:
         """guarda los datos de los vehiculos en un archvio csv."""
         with open(archivo_csv, "a", newline="") as archivo:
             archivo_csv_writer = csv.writer(archivo)
-            datos = { "class": self.__class__.__name__,
-                "atributos": self.__dict__}
-            archivo_csv_writer.writerow([json.dumps(datos)])
+            datos = { "class" : self.__class__,
+                       "atributos": f"{self.__dict__}"}
+            archivo_csv_writer.writerow([datos["class"], datos["atributos"]])
         
     @staticmethod
     def leer_datos_csv(archivo_csv):
@@ -29,21 +29,27 @@ class Vehiculo:
         if not os.path.isfile(archivo_csv):
             print(f"El archivo {archivo_csv} no existe.")
             return
+
+        class_map = {"vehiculo":Vehiculo,
+                    "Automovil":Automovil,
+                    "VehiculoParticular":VehiculoParticular,
+                    "VehiculoCarga":VehiculoCarga,
+                    "Bicicleta":Bicicleta,
+                    "Motocicleta":Motocicleta}
         try:
             with open(archivo_csv, "r") as archivo:
                 archivo_csv_reader = csv.reader(archivo)
                 for fila in archivo_csv_reader:
                     if fila:
-                        datos = json.loads(fila[0])
-                        clase_str = datos["class"]
-                        atributos_str = datos["atributos"]
-
-                        clase = globals().get(clase_str)
+                        clase_str = fila[0]
+                        atributos_str = fila[1]
+                        datos = ast.literal_eval(atributos_str)
+                        clase = class_map.get(clase_str.split("'")[1].split(".")[-1])
                         if clase:
-                            vehiculo = clase(**atributos_str)
+                            vehiculo = clase(**datos)
                             print(vehiculo)
                         else:
-                            print(f"Clase {clase_str} no encontrada")
+                            print(f"clase {clase_str} no encontrada")       
         except Exception as e:
             print(f"Error al leer el archivo: {e}")
 
